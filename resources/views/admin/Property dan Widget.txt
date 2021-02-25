@@ -1,0 +1,27 @@
+Property                                                 Widget        
+
+Title                                                    ThemeData
+
+Theme                                                    Colors
+
+primarySwatch                                            AppBar
+
+appBar                                                   Text
+
+body                                                     Center
+
+child                                                    Container
+
+height                                                   Row
+
+width                                                    MainAxisAlignment
+
+color                                                    Column
+
+mainAxisAlignment                                        Icon
+
+children                                                 SizedBox
+
+size                                                     TextStyle
+
+style
