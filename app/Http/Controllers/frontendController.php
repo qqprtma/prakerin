@@ -14,11 +14,11 @@ class FrontendController extends Controller
     {
         // Count Up
         $positif = DB::table('trackings')
-            ->sum('Positif');
+            ->sum('positif');
         $sembuh = DB::table('trackings')
-            ->sum('Sembuh');
+            ->sum('sembuh');
         $meninggal = DB::table('trackings')
-            ->sum('Meninggal');
+            ->sum('meninggal');
 
         //$global = file_get_contents('https://api.kawalcorona.com/positif');
         //$posglobal = json_decode($global, TRUE);
@@ -34,9 +34,9 @@ class FrontendController extends Controller
                   ->join('rws','rws.kelurahan_id','=','kelurahans.id')
                   ->join('trackings','trackings.rw_id','=','rws.id')
                   ->select('nama_provinsi',
-                          DB::raw('SUM(trackings.positif) as Positif'),
-                          DB::raw('SUM(trackings.sembuh) as Sembuh'),
-                          DB::raw('SUM(trackings.meninggal) as Meninggal'))
+                          DB::raw('SUM(trackings.positif) as positif'),
+                          DB::raw('SUM(trackings.sembuh) as sembuh'),
+                          DB::raw('SUM(trackings.meninggal) as meninggal'))
                   ->groupBy('provinsi_id')->orderBy('provinsi_id','ASC')
                   ->get();
 
