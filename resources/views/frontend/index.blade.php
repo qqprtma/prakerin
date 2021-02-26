@@ -100,13 +100,6 @@
                                             <p>Orang</p>
 	                                    </div>
 	                                </li>
-	                                <li>
-	                                    <div class="dash seconds_dash">
-                                            <span class="dash_title"><h2>Dunia</h2></span>
-                                            <span data-toggle="counter-up"><?php echo $posglobal['value'] ?></span>
-                                            <p>Orang</p>
-	                                    </div>
-	                                </li>
 	                            </ul>
 	                        </div>
 	                    </div>
@@ -120,84 +113,6 @@
         <!--
         About start
         ==================== -->
-        <section  class="section about bg-gray" id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7 col-sm-12 wow fadeInLeft">
-                        <div class="content">
-                            <div class="container">
-                                <div class="section-title" data-aos="zoom-out">
-                                  <h2>Data Provinsi</h2>
-                                </div>
-                                <div class="row content" data-aos="fade-up">
-                                    <div class="table table-striped   my-custom-scrollbar col-lg-12">
-                                      <table class="table table-bordered table-striped mb-0 " width="100%">
-                            <thead>
-                            <tr>
-                                <th scope="col"><center>No<center></th>
-                                <th scope="col"><center>Provinsi</center></th>
-                                <th scope="col"><center>Jumlah Positif</center></th>
-                                <th scope="col"><center>Jumlah Sembuh</center></th>
-                                <th scope="col"><center>Jumlah Meninggal</center></th>
-                           </tr>
-                            </thead>
-                            <tbody>
-                           @php $no = 1; @endphp
-                           @foreach($tampil as $data)
-                           <tr>
-                                <th scope="row"><center>{{$no++}}</center></th>
-                                <td><center>{{$data->nama_provinsi}}</center></td>
-                                <td><center>{{number_format($data->positif)}}</center></td>
-                                <td><center>{{number_format($data->sembuh)}}</center></td>
-                                <td><center>{{number_format($data->meninggal)}}</center></td>
-                           </tr>
-                            </tbody>
-                            @endforeach
-                            </table>
-                </div>
-            </div>
-            <!-- ======== Table Section Global ======= -->
-    <section id="global" class="global">
-        <div class="container">
-          <div class="section-title" data-aos="zoom-out">
-            <h2>Data Kasus Global</h2>
-          </div>
-
-          <div class="row content" data-aos="fade-up">
-              <div class="table table-striped   my-custom-scrollbar col-lg-12">
-                <table class="table table-bordered table-striped mb-0 " width="100%">
-                  <thead>
-                    <tr>
-                      <th scope="col"><center>No</center></th>
-                      <th scope="col"><center>Negara</center></th>
-                      <th scope="col"><center>Positif</center></th>
-                      <th scope="col"><center>Sembuh</center></th>
-                      <th scope="col"><center>Meninggal</center></th>
-                    </tr>
-                  </thead>
-                <tbody>
-                @php
-                  $no = 1;
-                @endphp
-                  @foreach($dunia as $data)
-                      <tr>
-                        <td> <?php echo $no++ ?></td>
-                        <td> <?php echo $data['attributes']['Country_Region'] ?></td>
-                        <td> <?php echo number_format($data['attributes']['Confirmed']) ?></td>
-                        <td><?php echo number_format($data['attributes']['Recovered'])?></td>
-                        <td><?php echo number_format($data['attributes']['Deaths'])?></td>
-                      </tr>
-                    @endforeach
-                  </tbody>
-
-                </table>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        </section>
-      <!-- ======== End Table Section Global ======= -->
         </section><!-- #about close -->
 
         <section clas="wow fadeInUp">

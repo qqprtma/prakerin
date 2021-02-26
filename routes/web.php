@@ -10,7 +10,8 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\FrontendController;
 
 
-Route::get('/',[FrontendController::class, 'index']);
+// Route::get('/',[FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index']);
 
 Auth::routes();
 

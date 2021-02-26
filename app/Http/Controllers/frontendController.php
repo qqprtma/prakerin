@@ -1,41 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use App\Http\Models\Provinsi;
-use App\Http\Models\Kota;
-use App\Http\Models\Kecamatan;
-use App\Http\Models\Kelurahan;
 use App\Http\Models\RW;
 use App\Http\Models\Tracking;
+use DB;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
-
 class FrontendController extends Controller
 {
     public function index()
     {
         // Count Up
         $positif = DB::table('trackings')
-            ->sum('positif');
+            ->sum('Positif');
         $sembuh = DB::table('trackings')
-            ->sum('sembuh');
+            ->sum('Sembuh');
         $meninggal = DB::table('trackings')
-            ->sum('meninggal');
+            ->sum('Meninggal');
 
-        $global = file_get_contents('https://api.kawalcorona.com/positif');
-        $posglobal = json_decode($global, TRUE);
+        //$global = file_get_contents('https://api.kawalcorona.com/positif');
+        //$posglobal = json_decode($global, TRUE);
 
         // Date
         $tanggal = Carbon::now()->format('D d-M-Y');
 
         // Table Provinsi
         $tampil = DB::table('provinsis')
-                  ->join('kotas','kotas.id_provinsi','=','provinsis.id')
-                  ->join('kecamatans','kecamatans.id_kota','=','kotas.id')
-                  ->join('kelurahans','kelurahans.id_kecamatan','=','kecamatans.id')
-                  ->join('rws','rws.id_kelurahan','=','kelurahans.id')
-                  ->join('trackings','trackings.id_rw','=','rws.id')
+                  ->join('kotas','kotas.provinsi_id','=','provinsis.id')
+                  ->join('kecamatans','kecamatans.kota_id','=','kotas.id')
+                  ->join('kelurahans','kelurahans.kecamatan_id','=','kecamatans.id')
+                  ->join('rws','rws.kelurahan_id','=','kelurahans.id')
+                  ->join('trackings','trackings.rw_id','=','rws.id')
                   ->select('nama_provinsi',
                           DB::raw('SUM(trackings.positif) as Positif'),
                           DB::raw('SUM(trackings.sembuh) as Sembuh'),
@@ -44,10 +41,10 @@ class FrontendController extends Controller
                   ->get();
 
         // Table Global
-        $datadunia= file_get_contents("https://api.kawalcorona.com/");
-        $dunia = json_decode($datadunia, TRUE);
+        //$datadunia= file_get_contents("https://api.kawalcorona.com/");
+        //$dunia = json_decode($datadunia, TRUE);
 
-        return view('dashboard.index',compact('positif','sembuh','meninggal','posglobal', 'tanggal','tampil','dunia'));
+        return view('frontend.index',compact('positif','sembuh','meninggal', 'tanggal','tampil'));
     }
 
 
