@@ -14,11 +14,11 @@ class FrontController extends Controller
     {
         // Count Up
         $positif = DB::table('trackings')
-            ->sum('Positif');
+            ->sum('positif');
         $sembuh = DB::table('trackings')
-            ->sum('Sembuh');
+            ->sum('sembuh');
         $meninggal = DB::table('trackings')
-            ->sum('Meninggal');
+            ->sum('meninggal');
 
         //$global = file_get_contents('https://api.kawalcorona.com/positif');
         //$posglobal = json_decode($global, TRUE);
