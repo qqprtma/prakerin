@@ -8,17 +8,17 @@ use App\Http\Models\RW;
 use App\Http\Models\Tracking;
 use DB;
 use Illuminate\Support\Carbon;
-class FrontendController extends Controller
+class FrontController extends Controller
 {
     public function index()
     {
         // Count Up
         $positif = DB::table('trackings')
-            ->sum('positif');
+            ->sum('Positif');
         $sembuh = DB::table('trackings')
-            ->sum('sembuh');
+            ->sum('Sembuh');
         $meninggal = DB::table('trackings')
-            ->sum('meninggal');
+            ->sum('Meninggal');
 
         //$global = file_get_contents('https://api.kawalcorona.com/positif');
         //$posglobal = json_decode($global, TRUE);
@@ -34,9 +34,9 @@ class FrontendController extends Controller
                   ->join('rws','rws.kelurahan_id','=','kelurahans.id')
                   ->join('trackings','trackings.rw_id','=','rws.id')
                   ->select('nama_provinsi',
-                          DB::raw('SUM(trackings.positif) as positif'),
-                          DB::raw('SUM(trackings.sembuh) as sembuh'),
-                          DB::raw('SUM(trackings.meninggal) as meninggal'))
+                          DB::raw('SUM(trackings.positif) as Positif'),
+                          DB::raw('SUM(trackings.sembuh) as Sembuh'),
+                          DB::raw('SUM(trackings.meninggal) as Meninggal'))
                   ->groupBy('provinsi_id')->orderBy('provinsi_id','ASC')
                   ->get();
 
@@ -46,6 +46,4 @@ class FrontendController extends Controller
 
         return view('frontend.index',compact('positif','sembuh','meninggal', 'tanggal','tampil'));
     }
-
-
 }
