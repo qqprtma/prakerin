@@ -27,18 +27,17 @@ class FrontController extends Controller
         $tanggal = Carbon::now()->format('D d-M-Y');
 
         // Table Provinsi
-        $tampil = DB::table('provinsis')
-                  ->join('kotas','kotas.provinsi_id','=','provinsis.id')
-                  ->join('kecamatans','kecamatans.kota_id','=','kotas.id')
-                  ->join('kelurahans','kelurahans.kecamatan_id','=','kecamatans.id')
-                  ->join('rws','rws.kelurahan_id','=','kelurahans.id')
-                  ->join('trackings','trackings.rw_id','=','rws.id')
-                  ->select('nama_provinsi',
-                          DB::raw('SUM(trackings.positif) as Positif'),
-                          DB::raw('SUM(trackings.sembuh) as Sembuh'),
-                          DB::raw('SUM(trackings.meninggal) as Meninggal'))
-                  ->groupBy('provinsi_id')->orderBy('provinsi_id','ASC')
-                  ->get();
+        $tampil = DB::table('provinsis') ->select('provinsis.kode_provinsi','provinsis.nama_provinsi',
+        DB::raw('SUM(trackings.jumlah_positif) as positif'),
+        DB::raw('SUM(trackings.jumlah_sembuh) as sembuh'),
+        DB::raw('SUM(trackings.jumlah_meninggal) as meninggal'))
+        ->join('kotas','provinsis.id','=','kotas.provinsi_id')
+        ->join('kecamatans','kotas.id','=','kecamatans.kota_id')
+        ->join('kelurahans','kecamatans.id','=','kelurahans.kecamatan_id')
+        ->join('rws','kelurahans.id','=','rws.kelurahan_id')
+        ->join('trackings','rws.id','=','trackings.rw_id')
+        ->groupBy('provinsis.id')->orderBy('nama_provinsi','ASC')
+        ->get();
 
         // Table Global
         //$datadunia= file_get_contents("https://api.kawalcorona.com/");
