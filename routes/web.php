@@ -11,7 +11,7 @@ use App\Http\Controllers\FrontendController;
 
 
 // Route::get('/',[FrontendController::class, 'index']);
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/', 'App\Http\Controllers\FrontendController@index');
 
 Auth::routes();
 
