@@ -7,10 +7,10 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\RwController;
 use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\FrontController;
 
 
-Route::get('/',[FrontendController::class, 'index']);
+Route::get('/',[FrontController::class, 'index']);
 
 
 Auth::routes();
