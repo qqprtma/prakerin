@@ -37,7 +37,7 @@ class FrontendController extends Controller
                           DB::raw('SUM(trackings.positif) as Positif'),
                           DB::raw('SUM(trackings.sembuh) as Sembuh'),
                           DB::raw('SUM(trackings.meninggal) as Meninggal'))
-                  ->groupBy('nama_provinsi')->orderBy('nama_provinsi','ASC')
+                  ->groupBy('provinsi_id')->orderBy('provinsi_id','ASC')
                   ->get();
 
         // Table Global
