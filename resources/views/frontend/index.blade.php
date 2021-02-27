@@ -113,6 +113,7 @@
         <!--
         About start
         ==================== -->
+
         </section><!-- #about close -->
 
         <section clas="wow fadeInUp">
